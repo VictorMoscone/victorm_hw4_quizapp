@@ -1,15 +1,14 @@
 let startBtn = document.querySelector("#startBtn");
 let cardText = document.querySelector("#cardText");
 let titleText = document.querySelector("#titleText");
-let a1btn = document.createElement("BUTTON");
-let a2btn = document.createElement("BUTTON");
 let cardBody = document.querySelector("#cardBody");
 
-
-let questionOne = {
-    q1statement: "When would you use an Array instead of an Object?",
-    q1answer: "When wanting to have the properties in order.",
-}
+let questionOne = [
+    "When would you use an Array instead of an Object?", 
+    "When wanting to have the properties in order.",
+    "When wanting to use a function.",
+    "When you need different types of data.",
+    "All of the above."]
 
 startBtn.addEventListener("click", quizStart)
     // How we'll begin our quiz off of the Start button.
@@ -18,26 +17,37 @@ function resetQuestion() {
     // Anything we need to dumb in here to reset each question.
     startBtn.style.display = "none";
     // This hides the start button shown on initial page load and quiz completion.
-}
-
-function createQButton(objectName) {
-    let btnDiv = document.createElement("div");
-    btnDiv.setAttribute("id", "questionButton");
-    cardBody.appendChild(btnDiv);
-    let test = document.querySelector("#questionButton");
-    a1btn.innerHTML = "Click me";
-    test.appendChild(a1btn);
+    cardText.style.display = "none";
+    // This hides the introductory quiz text once the quiz starts.
 }
 
 function quizStart() {
     resetQuestion();
-    titleText.textContent = questionOne.q1statement
-    cardText.textContent = questionOne.q1answer;
+    titleText.textContent = questionOne[0]
+    populateQuestion();
+}
+
+function populateQuestion() {
     createQButton(questionOne);
-    // a1btn.innerHTML = "Click me";
-    // a2btn.innerHTML = "Click me";
-    // cardText.appendChild(a1btn);
-    // cardText.appendChild(a2btn)
+}
+
+function createQButton(arrayName) {
+    for (let i = 0; i < 4; i++) {
+        let divCreate = document.createElement("div");
+        // divCreate creates a div.
+        divCreate.setAttribute("id", "questionButton");
+        // divCreated divs have the idea of questionButton.
+        cardBody.appendChild(divCreate);
+        // We create the divs inside cardBody.
+        let createBtn = document.createElement("BUTTON");
+        // createBtn creates a button element.
+        createBtn.innerHTML = arrayName[i + 1];
+        // createBtn created buttons have the inner HTML matching the respective question's answer.
+        let qBtn = document.querySelector("#questionButton");
+        // qBtn finds all elements with the questionButton id.
+        qBtn.appendChild(createBtn);
+        console.log("hey") 
+    }
 }
 
 // Notes to self, and don't forget to delete these this time:
