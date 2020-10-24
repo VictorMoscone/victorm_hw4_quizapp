@@ -53,16 +53,25 @@ function populateQuestion() {
     nextQuestion(questionCount)
 }
 
-function nextQuestion(questionCount) {
-    titleText.textContent = questionList[questionCount][0];
-    
+function findButtons() {
+    let button1 = document.querySelector("#button1");
+    let button2 = document.querySelector("#button1");
+    let button3 = document.querySelector("#button1");
+    let button4 = document.querySelector("#button1");
+    // There's a dynamic way to scale this, to make it easier to add more buttons. It's way too much work.
 }
 
-function question1active() {
-    let button1 = document.querySelector("#button1");
-    button1.addEventListener("click", function(){
-        
-    })
+function nextQuestion(questionCount) {
+    titleText.textContent = questionList[questionCount][0];
+    // This sets the title text dynamically to the current question.
+    findButtons();
+    // Findbuttons allows us to pull in the query selected variables.
+    button1.innerHTML = questionList[questionCount][1]
+    button2.innerHTML = questionList[questionCount][2]
+    button3.innerHTML = questionList[questionCount][3]
+    button4.innerHTML = questionList[questionCount][4]
+    // The above 4 lines could theoretically run a for loop, but, once again it's not worth the time.
+    // The above 4 lines are adding the respective question's possible answers dynamically.
 }
 
 // Notes to self, and don't forget to delete these this time:
