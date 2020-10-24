@@ -2,7 +2,8 @@ let startBtn = document.querySelector("#startBtn");
 let cardText = document.querySelector("#cardText");
 let titleText = document.querySelector("#titleText");
 let cardBody = document.querySelector("#cardBody");
-let questionCount = 0
+let questionCount = 0;
+let score = 0;
 
 let questionList = [
     questionOne = [
@@ -20,9 +21,6 @@ let questionList = [
         "Another word for programming."
     ]
 ]
-
-startBtn.addEventListener("click", quizStart)
-    // How we'll begin our quiz off of the Start button.
 
 function quizStart() {
     resetQuestion();
@@ -50,7 +48,7 @@ function populateQuestion() {
         // the above two lines are creating line breaks
         cardBody.appendChild(createBtn);
     }
-    nextQuestion(questionCount)
+    nextQuestion(questionCount);
 }
 
 function findButtons() {
@@ -66,15 +64,13 @@ function nextQuestion(questionCount) {
     // This sets the title text dynamically to the current question.
     findButtons();
     // Findbuttons allows us to pull in the query selected variables.
-    button1.innerHTML = questionList[questionCount][1]
-    button2.innerHTML = questionList[questionCount][2]
-    button3.innerHTML = questionList[questionCount][3]
-    button4.innerHTML = questionList[questionCount][4]
+    button1.innerHTML = questionList[questionCount][1];
+    button2.innerHTML = questionList[questionCount][2];
+    button3.innerHTML = questionList[questionCount][3];
+    button4.innerHTML = questionList[questionCount][4];
     // The above 4 lines could theoretically run a for loop, but, once again it's not worth the time.
     // The above 4 lines are adding the respective question's possible answers dynamically.
 }
 
-// Notes to self, and don't forget to delete these this time:
-    // I'm thinking each question is an array or object.
-    // Each arr/obj has four buttons that operate as your multiple choice and they each trigger a function
-    // to move onto the next question while also returning your answer as right or wrong.
+startBtn.addEventListener("click", quizStart);
+    // How we'll begin our quiz off of the Start button.
