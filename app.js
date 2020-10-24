@@ -31,30 +31,6 @@ function populateQuestion() {
     createQButton(questionOne);
 }
 
-// function createQButton(arrayName) {
-//     for (let i = 0; i < 4; i++) {
-//         let divCreate = document.createElement("div");
-//         // divCreate creates a div.
-//         divCreate.setAttribute("class", "questionButton");
-//         // divCreated divs have the class of questionButton.
-//         divCreate.setAttribute("id", "button" + (i + 1));
-//         // divCreated divs have the value of their 1-4.
-//         cardBody.appendChild(divCreate);
-//         // We create the divs inside cardBody.
-//         let brCreate = document.createElement("br");
-//         cardBody.appendChild(brCreate);
-//         // the above two lines are creating line breaks
-//         let createBtn = document.createElement("BUTTON");
-//         // createBtn creates a button element.
-//         createBtn.innerHTML = arrayName[i + 1];
-//         // createBtn created buttons have the inner HTML matching the respective question's answer.
-//         let qBtn = document.querySelector("#button" + (i+1));
-//         // qBtn finds the each new div we made with a different button ID.
-//         qBtn.appendChild(createBtn);
-//         console.log("hey") 
-//     }
-// }
-
 function createQButton(arrayName) {
     for (let i = 0; i < 4; i++) {
         let createBtn = document.createElement("BUTTON");
