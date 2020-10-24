@@ -13,6 +13,12 @@ let questionOne = [
 startBtn.addEventListener("click", quizStart)
     // How we'll begin our quiz off of the Start button.
 
+function quizStart() {
+    resetQuestion();
+    titleText.textContent = questionOne[0]
+    populateQuestion();
+}
+
 function resetQuestion() {
     // Anything we need to dumb in here to reset each question.
     startBtn.style.display = "none";
@@ -21,32 +27,48 @@ function resetQuestion() {
     // This hides the introductory quiz text once the quiz starts.
 }
 
-function quizStart() {
-    resetQuestion();
-    titleText.textContent = questionOne[0]
-    populateQuestion();
-}
-
 function populateQuestion() {
     createQButton(questionOne);
 }
 
+// function createQButton(arrayName) {
+//     for (let i = 0; i < 4; i++) {
+//         let divCreate = document.createElement("div");
+//         // divCreate creates a div.
+//         divCreate.setAttribute("class", "questionButton");
+//         // divCreated divs have the class of questionButton.
+//         divCreate.setAttribute("id", "button" + (i + 1));
+//         // divCreated divs have the value of their 1-4.
+//         cardBody.appendChild(divCreate);
+//         // We create the divs inside cardBody.
+//         let brCreate = document.createElement("br");
+//         cardBody.appendChild(brCreate);
+//         // the above two lines are creating line breaks
+//         let createBtn = document.createElement("BUTTON");
+//         // createBtn creates a button element.
+//         createBtn.innerHTML = arrayName[i + 1];
+//         // createBtn created buttons have the inner HTML matching the respective question's answer.
+//         let qBtn = document.querySelector("#button" + (i+1));
+//         // qBtn finds the each new div we made with a different button ID.
+//         qBtn.appendChild(createBtn);
+//         console.log("hey") 
+//     }
+// }
+
 function createQButton(arrayName) {
     for (let i = 0; i < 4; i++) {
-        let divCreate = document.createElement("div");
-        // divCreate creates a div.
-        divCreate.setAttribute("id", "questionButton");
-        // divCreated divs have the idea of questionButton.
-        cardBody.appendChild(divCreate);
-        // We create the divs inside cardBody.
         let createBtn = document.createElement("BUTTON");
         // createBtn creates a button element.
         createBtn.innerHTML = arrayName[i + 1];
         // createBtn created buttons have the inner HTML matching the respective question's answer.
-        let qBtn = document.querySelector("#questionButton");
-        // qBtn finds all elements with the questionButton id.
-        qBtn.appendChild(createBtn);
-        console.log("hey") 
+        createBtn.setAttribute("class", "questionButton btn btn-primary m-1");
+        // Created buttons have the above classes & styling.
+        createBtn.setAttribute("id", "button" + (i + 1));
+        // Created buttons have the ID of their 1-4.
+        let brCreate = document.createElement("br");
+        cardBody.appendChild(brCreate);
+        // the above two lines are creating line breaks
+        cardBody.appendChild(createBtn);
     }
 }
 
