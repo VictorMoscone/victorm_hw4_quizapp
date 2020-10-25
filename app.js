@@ -3,6 +3,7 @@ let cardText = document.querySelector("#cardText");
 let titleText = document.querySelector("#titleText");
 let cardBody = document.querySelector("#cardBody");
 let highScoreForm = document.querySelector("#highScoreForm");
+let enteredInitials = document.querySelector("#enteredInitials");
 let timer = document.querySelector("#timer");
 let questionCount = 0;
 let score = 0;
@@ -176,10 +177,14 @@ function gameOver() {
         test.remove();
     }
     cardText.style.display = "block";
-    cardText.textContent = "Your Score: " + score
+    cardText.textContent = "Your Score: " + score;
     highScoreForm.style.display = "block";
-
 }
+
+highScoreForm.addEventListener("submit", function(e){
+    e.preventDefault()
+    window.localStorage.setItem("initials", JSON.stringify(highScoreForm));
+})
 
 startBtn.addEventListener("click", quizStart);
     // How we'll begin our quiz off of the Start button.

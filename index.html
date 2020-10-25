@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<header class="fixed-top bg-light text-black">
+<header class="fixed-top bg-light text-black p-3">
   <p class="text-center m-2" id="timer">Probably will be replaced.</p>
 </header>
 
@@ -19,12 +19,15 @@
     <div class="mx-auto mt-5">
       <div class="card mt-5 p-3">
         <div class="card-body" id="cardBody">
-          <h5 class="card-title text" id="titleText">Quiz Boi</h5>
-              <p id="cardText">Under construction.</p>
+          <h5 class="card-title text text-center" id="titleText">Quiz Boi</h5>
+              <p id="cardText" class="text-center">Welcome to my awesome quiz! 
+                <br>This brief quiz will test your knowledge of all things JavaScript. 
+                <br>Especially syntax! 
+                <br>Do your best to get them all.</p>
               <div class="text-center">
                 <a id="startBtn" class="btn btn-primary text">Start</a>
               </div>
-          <form class="mt-2" id="highScoreForm" style="display: none;">
+          <form class="mt-2 form-control-lg" id="highScoreForm" style="display: none;">
             <input type="text" id="enteredInitials" placeholder="Enter your Initials">
           </form>
         </div>
