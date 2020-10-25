@@ -22,6 +22,8 @@ let questionList = [
     ]
 ]
 
+let answerKey = [1, 4]
+
 function quizStart() {
     resetQuestion();
     populateQuestion();
@@ -53,9 +55,9 @@ function populateQuestion() {
 
 function findButtons() {
     let button1 = document.querySelector("#button1");
-    let button2 = document.querySelector("#button1");
-    let button3 = document.querySelector("#button1");
-    let button4 = document.querySelector("#button1");
+    let button2 = document.querySelector("#button2");
+    let button3 = document.querySelector("#button3");
+    let button4 = document.querySelector("#button4");
     // There's a dynamic way to scale this, to make it easier to add more buttons. It's way too much work.
 }
 
@@ -70,6 +72,17 @@ function nextQuestion(questionCount) {
     button4.innerHTML = questionList[questionCount][4];
     // The above 4 lines could theoretically run a for loop, but, once again it's not worth the time.
     // The above 4 lines are adding the respective question's possible answers dynamically.
+    let allButtons = document.querySelectorAll('.questionButton');
+    allButtons.forEach(function(btnValue){
+        btnValue.addEventListener('click', function() {
+            btnID = btnValue.getAttribute("id");
+            checkAnswer();
+        })
+    })
+}
+
+function checkAnswer() {
+    findButtons();
 }
 
 startBtn.addEventListener("click", quizStart);
