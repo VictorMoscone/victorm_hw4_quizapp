@@ -5,7 +5,6 @@ let cardBody = document.querySelector("#cardBody");
 let highScoreForm = document.querySelector("#highScoreForm");
 let timer = document.querySelector("#timer");
 let questionCount = 0;
-let score = 0;
 let playerInfo = {
     score: 0,
     initials: ""
