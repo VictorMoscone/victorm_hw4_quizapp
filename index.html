@@ -9,14 +9,14 @@
 </head>
 <body>
 
-<div class="fixed-top bg-light text-black">
+<header class="fixed-top bg-light text-black">
   <p class="text-center m-2" id="timer">Probably will be replaced.</p>
-</div>
+</header>
 
 <section class="container">
   <!-- The card that displays my about me lives here. -->
   <div class="row">
-    <div class="mx-auto">
+    <div class="mx-auto mt-5">
       <div class="card mt-5 p-3">
         <div class="card-body" id="cardBody">
           <h5 class="card-title text" id="titleText">Quiz Boi</h5>
@@ -24,6 +24,9 @@
               <div class="text-center">
                 <a id="startBtn" class="btn btn-primary text">Start</a>
               </div>
+          <form class="mt-2" id="highScoreForm" style="display: none;">
+            <input type="text" id="enteredInitials" placeholder="Enter your Initials">
+          </form>
         </div>
       </div>
     </div>

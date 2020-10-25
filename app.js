@@ -2,6 +2,7 @@ let startBtn = document.querySelector("#startBtn");
 let cardText = document.querySelector("#cardText");
 let titleText = document.querySelector("#titleText");
 let cardBody = document.querySelector("#cardBody");
+let highScoreForm = document.querySelector("#highScoreForm");
 let timer = document.querySelector("#timer");
 let questionCount = 0;
 let score = 0;
@@ -51,6 +52,8 @@ function resetQuestion() {
     // This hides the start button shown on initial page load and quiz completion.
     cardText.style.display = "none";
     // This hides the introductory quiz text once the quiz starts.
+    highScoreForm.style.display = "none";
+    // This hides the high score form.
 }
 
 
@@ -174,6 +177,8 @@ function gameOver() {
     }
     cardText.style.display = "block";
     cardText.textContent = "Your Score: " + score
+    highScoreForm.style.display = "block";
+
 }
 
 startBtn.addEventListener("click", quizStart);
