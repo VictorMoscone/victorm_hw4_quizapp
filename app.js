@@ -26,10 +26,17 @@ let questionList = [
         "Let is local to only the scope it's within.",
         "Let allows the assigned element access to the dom.",
         "Var is used in HTML while Let is used in JavaScript."
-    ]
+    ],
+    questionFour = [
+        "What's the difference between ID and Class?",
+        "Class is primarily used in CSS.",
+        "IDs can only be constructed with digits.",
+        "JQuery doesn't support Classes.",
+        "You can use an ID only once."
+    ],
 ]
 
-let answerKey = ["button1", "button3", "button2"]
+let answerKey = ["button1", "button3", "button2", "button4"]
 
 function quizStart() {
     resetQuestion();
@@ -48,13 +55,16 @@ function resetQuestion() {
 function timerFunc() {
     let timer = document.querySelector("#timer");
     timer.textContent = 10;
+    // Starts the clock at 10 seconds.
     let myfunc = setInterval(function() {
         timer.textContent--
-    if (timer.textContent < 0) {
+    if (timer.textContent < 1 || questionCount >= questionList.length) {
         clearInterval(myfunc);
         timer.textContent = "Game Over!"
-    }
-    }, 1000)
+        gameOver();
+        // will clear the interval and display Game Over! when falling below 1 second or reaching the end.
+    }}, 1000)
+    // Every 1000 milliseconds, 1 second - the set interval will trigger.
 }
 
 function populateQuestion() {
@@ -110,7 +120,20 @@ function checkAnswer() {
     }
     questionCount++
     // This indicates that we're moving up a question.
-    nextQuestion(questionCount);
+    if (questionCount < questionList.length) {
+        nextQuestion(questionCount);
+    }
+    
+}
+
+function gameOver() {
+    titleText.textContent = "All done!";
+    // findButtons();
+    // button1.remove();
+    // button2.remove();
+    // button3.remove();
+    // button4.remove();
+    let abo = document.querySelector("br");
 }
 
 startBtn.addEventListener("click", quizStart);
