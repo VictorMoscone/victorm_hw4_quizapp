@@ -88,6 +88,14 @@ function populateQuestion() {
         // the above two lines are creating line breaks
         cardBody.appendChild(createBtn);
     }
+    let hrCreate = document.createElement("hr");
+    hrCreate.setAttribute("id", "hrrightWrong");
+    hrCreate.style.display = "none";
+    cardBody.appendChild(hrCreate);
+    let pCreate = document.createElement("p");
+    pCreate.setAttribute("id", "prightWrong");
+    pCreate.style.display = "none";
+    cardBody.appendChild(pCreate);
     nextQuestion(questionCount);
 }
 
@@ -116,8 +124,10 @@ function checkAnswer() {
     findButtons();
     if (this.btnID === answerKey[questionCount]) {
         score++
+        notification("right");
     } else {
         timer.textContent-=3
+        notification("wrong");
     }
     questionCount++
     // This indicates that we're moving up a question.
@@ -127,6 +137,27 @@ function checkAnswer() {
         gameOver();
         // Slight redudancy since the timer uses gameOver also. This is for a more immediate game over screen.
     }   
+}
+
+function notification(rightWrong) {
+    // This function displays the notification of whether your answer was right or wrong.
+    if (rightWrong == "right") {
+        notifTimer();
+        document.querySelector("#prightWrong").textContent = "Correct!";
+    } else {
+        notifTimer();
+        document.querySelector("#prightWrong").textContent = "Wrong!";
+    }
+}
+
+function notifTimer() {
+    // This function limits how long the notification is on screen.
+    document.querySelector("#hrrightWrong").style.display = "block";
+    document.querySelector("#prightWrong").style.display = "block";
+    let thisTimer = setInterval(function() {
+        document.querySelector("#hrrightWrong").style.display = "none";
+        document.querySelector("#prightWrong").style.display = "none";
+    }, 2000)
 }
 
 function gameOver() {
