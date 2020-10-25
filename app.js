@@ -19,10 +19,17 @@ let questionList = [
         "Any time you use a function.",
         "Your code isn't in the global scope, but instead in functions.",
         "Another word for programming."
+    ],
+    questionThree = [
+        "What is the difference between Let and Var?",
+        "Var allows you to use functions.",
+        "Let is local to only the scope it's within.",
+        "Let allows the assigned element access to the dom.",
+        "Var is used in HTML while Let is used in JavaScript."
     ]
 ]
 
-let answerKey = ["button1", "button3"]
+let answerKey = ["button1", "button3", "button2"]
 
 function quizStart() {
     resetQuestion();
@@ -46,6 +53,10 @@ function populateQuestion() {
         // Created buttons have the above classes & styling.
         createBtn.setAttribute("id", "button" + (i + 1));
         // Created buttons have the ID of their 1-4.
+        createBtn.addEventListener('click', function() {
+            btnID = createBtn.getAttribute("id");
+            checkAnswer();
+        });
         let brCreate = document.createElement("br");
         cardBody.appendChild(brCreate);
         // the above two lines are creating line breaks
@@ -73,20 +84,16 @@ function nextQuestion(questionCount) {
     button4.innerHTML = questionList[questionCount][4];
     // The above 4 lines could theoretically run a for loop, but, once again it's not worth the time.
     // The above 4 lines are adding the respective question's possible answers dynamically.
-    let allButtons = document.querySelectorAll('.questionButton');
-    allButtons.forEach(function(btnValue){
-        btnValue.addEventListener('click', function() {
-            btnID = btnValue.getAttribute("id");
-            checkAnswer();
-        // This function is saying that whenever we click a button, it's going to check our answer.
-        })
-    })
 }
 
 function checkAnswer() {
     findButtons();
-    if (this.btnID == answerKey[questionCount]) {
-        console.log("Hello")
+    if (this.btnID === answerKey[questionCount]) {
+        score++
+        console.log("Correct!")
+    } else {
+        console.log(questionCount, btnID)
+        console.log("Wrong!")
     }
     questionCount++
     // This indicates that we're moving up a question.
