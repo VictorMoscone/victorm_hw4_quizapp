@@ -22,7 +22,7 @@ let questionList = [
     ]
 ]
 
-let answerKey = [1, 4]
+let answerKey = ["button1", "button3"]
 
 function quizStart() {
     resetQuestion();
@@ -38,6 +38,7 @@ function resetQuestion() {
 }
 
 function populateQuestion() {
+    // Creates our buttons and our line breaks.
     for (let i = 0; i < 4; i++) {
         let createBtn = document.createElement("BUTTON");
         // createBtn creates a button element.
@@ -58,7 +59,7 @@ function findButtons() {
     let button2 = document.querySelector("#button2");
     let button3 = document.querySelector("#button3");
     let button4 = document.querySelector("#button4");
-    // There's a dynamic way to scale this, to make it easier to add more buttons. It's way too much work.
+    // There's a more dynamic way to scale this, to make it easier to add more buttons.
 }
 
 function nextQuestion(questionCount) {
@@ -77,12 +78,19 @@ function nextQuestion(questionCount) {
         btnValue.addEventListener('click', function() {
             btnID = btnValue.getAttribute("id");
             checkAnswer();
+        // This function is saying that whenever we click a button, it's going to check our answer.
         })
     })
 }
 
 function checkAnswer() {
     findButtons();
+    if (this.btnID == answerKey[questionCount]) {
+        console.log("Hello")
+    }
+    questionCount++
+    // This indicates that we're moving up a question.
+    nextQuestion(questionCount);
 }
 
 startBtn.addEventListener("click", quizStart);
