@@ -47,9 +47,13 @@ function resetQuestion() {
 
 function timerFunc() {
     let timer = document.querySelector("#timer");
-    timer.textContent = 60;
+    timer.textContent = 10;
     let myfunc = setInterval(function() {
         timer.textContent--
+    if (timer.textContent < 0) {
+        clearInterval(myfunc);
+        timer.textContent = "Game Over!"
+    }
     }, 1000)
 }
 
