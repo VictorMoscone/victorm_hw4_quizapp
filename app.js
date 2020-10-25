@@ -2,6 +2,7 @@ let startBtn = document.querySelector("#startBtn");
 let cardText = document.querySelector("#cardText");
 let titleText = document.querySelector("#titleText");
 let cardBody = document.querySelector("#cardBody");
+let timer = document.querySelector("#timer");
 let questionCount = 0;
 let score = 0;
 
@@ -52,18 +53,19 @@ function resetQuestion() {
     // This hides the introductory quiz text once the quiz starts.
 }
 
-function timerFunc() {
-    let timer = document.querySelector("#timer");
+
+function timerFunc() {   
     timer.textContent = 10;
-    // Starts the clock at 10 seconds.
+    // Starts the clock at X seconds.
     let myfunc = setInterval(function() {
         timer.textContent--
-    if (timer.textContent < 1 || questionCount >= questionList.length) {
-        clearInterval(myfunc);
-        timer.textContent = "Game Over!"
-        gameOver();
-        // will clear the interval and display Game Over! when falling below 1 second or reaching the end.
-    }}, 1000)
+        if (timer.textContent < 1 || questionCount >= questionList.length) {
+            clearInterval(myfunc);
+            timer.textContent = "Game Over!"
+            gameOver();
+            // will clear the interval and display Game Over! when falling below 1 second or reaching the end.
+        }
+    }, 1000)
     // Every 1000 milliseconds, 1 second - the set interval will trigger.
 }
 
@@ -114,16 +116,17 @@ function checkAnswer() {
     findButtons();
     if (this.btnID === answerKey[questionCount]) {
         score++
-        console.log("Correct!")
     } else {
-        console.log("Wrong!")
+        timer.textContent-=3
     }
     questionCount++
     // This indicates that we're moving up a question.
     if (questionCount < questionList.length) {
         nextQuestion(questionCount);
-    }
-    
+    } else {
+        gameOver();
+        // Slight redudancy since the timer uses gameOver also. This is for a more immediate game over screen.
+    }   
 }
 
 function gameOver() {
@@ -133,7 +136,9 @@ function gameOver() {
     // button2.remove();
     // button3.remove();
     // button4.remove();
-    let abo = document.querySelector("br");
+    // let abo = document.querySelector("br");
+    cardText.style.display = "block";
+    cardText.textContent = "Your Score: " + score
 }
 
 startBtn.addEventListener("click", quizStart);
