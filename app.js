@@ -33,6 +33,7 @@ let answerKey = ["button1", "button3", "button2"]
 
 function quizStart() {
     resetQuestion();
+    timerFunc();
     populateQuestion();
 }
 
@@ -42,6 +43,14 @@ function resetQuestion() {
     // This hides the start button shown on initial page load and quiz completion.
     cardText.style.display = "none";
     // This hides the introductory quiz text once the quiz starts.
+}
+
+function timerFunc() {
+    let timer = document.querySelector("#timer");
+    timer.textContent = 60;
+    let myfunc = setInterval(function() {
+        timer.textContent--
+    }, 1000)
 }
 
 function populateQuestion() {
@@ -57,6 +66,7 @@ function populateQuestion() {
             btnID = createBtn.getAttribute("id");
             checkAnswer();
         });
+        // Adds an event listener to each button as they're created.
         let brCreate = document.createElement("br");
         cardBody.appendChild(brCreate);
         // the above two lines are creating line breaks
@@ -92,7 +102,6 @@ function checkAnswer() {
         score++
         console.log("Correct!")
     } else {
-        console.log(questionCount, btnID)
         console.log("Wrong!")
     }
     questionCount++
