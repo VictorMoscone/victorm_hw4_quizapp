@@ -62,7 +62,7 @@ function resetQuestion() {
 
 
 function timerFunc() {   
-    timer.textContent = 10;
+    timer.textContent = 60;
     // Starts the clock at X seconds.
     let myfunc = setInterval(function() {
         timer.textContent--
@@ -134,7 +134,7 @@ function checkAnswer() {
         playerInfo.score++
         notification("right");
     } else {
-        timer.textContent-=3
+        timer.textContent-=10;
         notification("wrong");
     }
     questionCount++
