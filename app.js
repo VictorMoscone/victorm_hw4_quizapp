@@ -3,10 +3,13 @@ let cardText = document.querySelector("#cardText");
 let titleText = document.querySelector("#titleText");
 let cardBody = document.querySelector("#cardBody");
 let highScoreForm = document.querySelector("#highScoreForm");
-let enteredInitials = document.querySelector("#enteredInitials");
 let timer = document.querySelector("#timer");
 let questionCount = 0;
 let score = 0;
+let playerInfo = {
+    score: 0,
+    initials: ""
+}
 
 let questionList = [
     questionOne = [
@@ -128,7 +131,7 @@ function nextQuestion(questionCount) {
 function checkAnswer() {
     findButtons();
     if (this.btnID === answerKey[questionCount]) {
-        score++
+        playerInfo.score++
         notification("right");
     } else {
         timer.textContent-=3
@@ -172,18 +175,24 @@ function gameOver() {
     button2.remove();
     button3.remove();
     button4.remove();
+    // Removes all of the buttons since they aren't needed anymore. Could be refactored.
     for (let i = 0; i < 4; i++) {
-        let test = document.querySelector(".removableBR");
+        let test = document.querySelector(".removableBr");
         test.remove();
     }
+    // Removes all of the created Brs.
     cardText.style.display = "block";
-    cardText.textContent = "Your Score: " + score;
+    cardText.textContent = "Your Score: " + playerInfo.score;
     highScoreForm.style.display = "block";
+    // Reveals the form and the user's score.
 }
 
 highScoreForm.addEventListener("submit", function(e){
     e.preventDefault()
-    window.localStorage.setItem("initials", JSON.stringify(highScoreForm));
+    let enteredInitials = document.querySelector("#enteredInitials").value;
+    window.localStorage.setItem("initials", enteredInitials);
+    window.localStorage.setItem("highscore", playerInfo.score);
+    highScoreForm.reset();
 })
 
 startBtn.addEventListener("click", quizStart);
