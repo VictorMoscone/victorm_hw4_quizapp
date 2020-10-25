@@ -84,6 +84,7 @@ function populateQuestion() {
         });
         // Adds an event listener to each button as they're created.
         let brCreate = document.createElement("br");
+        brCreate.setAttribute("class", "removableBr");
         cardBody.appendChild(brCreate);
         // the above two lines are creating line breaks
         cardBody.appendChild(createBtn);
@@ -162,12 +163,15 @@ function notifTimer() {
 
 function gameOver() {
     titleText.textContent = "All done!";
-    // findButtons();
-    // button1.remove();
-    // button2.remove();
-    // button3.remove();
-    // button4.remove();
-    // let abo = document.querySelector("br");
+    findButtons();
+    button1.remove();
+    button2.remove();
+    button3.remove();
+    button4.remove();
+    for (let i = 0; i < 4; i++) {
+        let test = document.querySelector(".removableBR");
+        test.remove();
+    }
     cardText.style.display = "block";
     cardText.textContent = "Your Score: " + score
 }
